@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {GifsService} from "../../service/gifs.service";
 
 @Component({
@@ -15,9 +15,11 @@ export class SearchBarComponent {
   }
 
   searchTag(): void {
-    const newTag = this.tagInput.nativeElement.value;
-    this.gifsService.searchTag(newTag);
-    this.tagInput.nativeElement.value = '';
+    if (this.tagInput.nativeElement.value !== '') {
+      const newTag = this.tagInput.nativeElement.value;
+      this.gifsService.searchTag(newTag);
+      this.tagInput.nativeElement.value = '';
+    }
   }
 
 }
